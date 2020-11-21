@@ -1,0 +1,25 @@
+{
+  "name": "notification-service",
+  "version": "1.0.0",
+  "description": "Notification service",
+  "main": "index.js",
+  "scripts": {
+    "start": "nf start",
+    "test": "mocha ./test/"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bull": "^3.7.0",
+    "express": "^4.16.4",
+    "foreman": "^3.0.1",
+    "joi": "^17.3.0",
+    "swagger-ui-express": "^4.1.5"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^8.2.1",
+    "supertest": "^6.0.1"
+  },
+  "license": "ISC"
+}

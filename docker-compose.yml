@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  node:
+    tty: true
+    stdin_open: true
+    env_file:
+      - ./.env
+    depends_on:
+      - redis
+    build: .
+    ports:
+      - "5050:5050"
+    volumes:
+      - .:/code
+  redis:
+    image: "redis:6.0.9"

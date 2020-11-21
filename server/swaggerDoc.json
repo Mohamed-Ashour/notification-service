@@ -1,0 +1,163 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Notification API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/notification": {
+            "post": {
+                "tags": ["Notification"],
+                "description": "Create new Notification",
+                "requestBody": {
+                    "description": "Notification object",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "language": {
+                                        "type": "string",
+                                        "enum": ["ar", "en"]
+                                    },
+                                    "provider": {
+                                        "type": "string",
+                                        "enum": ["apns", "fcm", "mail", "sms"]
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["group", "personal"]
+                                    },
+                                    "destinations": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "title",
+                                    "message",
+                                    "language",
+                                    "provider",
+                                    "type",
+                                    "destinations"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "examples": {
+                                "Notification": {
+                                    "value": {
+                                        "title": "sample title",
+                                        "message": "this is a sample message",
+                                        "language": "en",
+                                        "provider": "sms",
+                                        "type": "group",
+                                        "destinations": ["01009555326"]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "NotificationSuccessResponse",
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "NotificationSuccessResponse": {
+                                        "value": {
+                                            "id": "123"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "ErrorResponse",
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErrorResponse": {
+                                        "value": {
+                                            "type": "ValidationError",
+                                            "error": {
+                                                "details": [
+                                                    {
+                                                        "message": "\"provider\" must be one of [apns, fcm, mail, sms]"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "ErrorResponse",
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErrorResponse": {
+                                        "value": {
+                                            "type": "InternalServerError",
+                                            "error": {
+                                                "message": "internal server error"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
