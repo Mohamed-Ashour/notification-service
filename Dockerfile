@@ -4,4 +4,4 @@ WORKDIR /code
 COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install --quiet
 COPY . .
-CMD ["npm", "start"]
+CMD ["bash"]
