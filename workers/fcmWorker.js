@@ -10,7 +10,7 @@ const MAX_CONCURRENT_JOBS = 100;
 
 fcmQueue.process(MAX_CONCURRENT_JOBS, async (job) => {
     // logic of sending notification to provider goes here
-    return fcmService.send(job.data);
+    return fcmService.send({ id: job.id, ...job.data });
 });
 
 console.log('Worker is running')

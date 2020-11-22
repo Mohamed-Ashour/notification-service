@@ -17,7 +17,7 @@ const MAX_CONCURRENT_JOBS = 10;
 
 smsQueue.process(MAX_CONCURRENT_JOBS, async (job) => {
     // logic of sending notification to provider goes here
-    return smsService.send({ ...job.data, id: job.id });
+    return smsService.send({ id: job.id, ...job.data });
 });
 
 console.log('Worker is running')

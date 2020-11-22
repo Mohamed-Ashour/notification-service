@@ -17,7 +17,7 @@ const MAX_CONCURRENT_JOBS = 5;
 
 mailQueue.process(MAX_CONCURRENT_JOBS, async (job) => {
     // logic of sending notification to provider goes here
-    return mailService.send(job.data);
+    return mailService.send({  id: job.id, ...job.data });
 });
 
 console.log('Worker is running')

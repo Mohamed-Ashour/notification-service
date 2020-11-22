@@ -10,7 +10,7 @@ const MAX_CONCURRENT_JOBS = 50;
 
 apnsQueue.process(MAX_CONCURRENT_JOBS, async (job) => {
     // logic of sending notification to provider goes here
-    return apnsService.send(job.data);
+    return apnsService.send({ id: job.id, ...job.data });
 });
 
 console.log('worker is running')
