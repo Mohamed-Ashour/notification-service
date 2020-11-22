@@ -1,7 +1,7 @@
 const Queue = require('bull');
 const smsService = require('./provider');
 
-const REDIS_URL = process.env.REDIS_URL;
+const {REDIS_URL} = process.env;
 
 const QUEUE_CONFIG = {
     limiter: {

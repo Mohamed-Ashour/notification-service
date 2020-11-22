@@ -34,5 +34,5 @@ module.exports = {
 
         return queues[notification.provider].add(notification, DEFAULT_JOB_CONFIG);
     },
-    _queues: queues,
+    queues,
 };

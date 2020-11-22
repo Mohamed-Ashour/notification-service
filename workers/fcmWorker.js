@@ -1,7 +1,7 @@
 const Queue = require('bull');
 const fcmService = require('./provider');
 
-const REDIS_URL = process.env.REDIS_URL;
+const {REDIS_URL} = process.env;
 
 const fcmQueue = new Queue('fcm', REDIS_URL);
 

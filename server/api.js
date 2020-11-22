@@ -1,15 +1,21 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
+const { setQueues, UI } = require('bull-board')
 const swaggerUi = require('swagger-ui-express');
 
 const swaggerDoc = require('./swaggerDoc');
-const {produce} = require('./producer');
+const {produce, queues} = require('./producer');
 
 const {PORT} = process.env;
 
-app.use(bodyParser.json());
+// queues visualization dashboard
+setQueues(Object.values(queues));
+app.use('/queues', UI)
+
+// serve swagger docs
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
+app.use(bodyParser.json());
 
 app.post('/notification', async (req, res) => {
     const notification = req.body;

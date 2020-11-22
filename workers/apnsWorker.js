@@ -1,7 +1,7 @@
 const Queue = require('bull');
 const apnsService = require('./provider');
 
-const REDIS_URL = process.env.REDIS_URL;
+const {REDIS_URL} = process.env;
 
 const apnsQueue = new Queue('apns', REDIS_URL);
 
