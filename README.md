@@ -13,6 +13,8 @@ The service was designed to scale, so server, redis, db, and workers can each sc
 
 
 ## Get started
+rename `.env-example` to `.env`
+
 
 Build and run containers
 ```
